@@ -5,7 +5,7 @@ CSCI 1111 - OOP 1
 
 Exercise 9_1: Rectangle class and objects
  */
-public class Exercise09_01 {
+public class TestRectangle {
     public static void main(String[] args) {
         Rectangle rect1 = new Rectangle(40,4);
         Rectangle rect2 = new Rectangle(35.9,3.5);
@@ -21,26 +21,5 @@ public class Exercise09_01 {
         System.out.println("Height: " + rect2.height);
         System.out.println("Height: " + rect2.getArea());
         System.out.println("Height: " + rect2.getPerimeter());
-    }
-}
-
-class Rectangle {
-    double height = 1.0;
-    double width = 1.0;
-
-    Rectangle() {
-    }
-
-    Rectangle(double newHeight, double newWidth) {
-        height = newHeight;
-        width = newWidth;
-    }
-
-    public double getArea() {
-        return height * width;
-    }
-
-    public double getPerimeter() {
-        return 2 * (height + width);
     }
 }
