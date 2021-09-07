@@ -29,7 +29,7 @@ public class ATM {
 		System.out.print("Enter an ID: ");
 		id = input.nextInt();
 		
-		if (id < 0 || id > 10) {
+		if (id < 0 || id > 9) {
 			System.out.println("Invalid ID choice. Choose between 0 and 9.");
 			return;
 		}
