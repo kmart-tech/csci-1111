@@ -1,3 +1,8 @@
+/*
+Kevin Martinsen
+CSCI 1111 - OOP 1
+09/03/2021
+*/
 class Account {
 	private int id = 0;
 	private double balance = 0.0;
