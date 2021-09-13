@@ -6,8 +6,8 @@ CSCI 1111 - OOP 1
 
 class Account {
 	private int id = 0;
-	private double balance = 0.0;
-	private static double annualIntrestRate = 0.0; // saved as a percent
+	protected double balance = 0.0;
+	private static double annualInterestRate = 0.0; // saved as a percent
 	private java.util.Date dateCreated;
 	
 	Account(){
@@ -22,7 +22,7 @@ class Account {
 	
 	int getId() {return id;}
 	double getBalance() {return balance;}
-	double getAnnualInterestRate() {return annualIntrestRate;}
+	double getAnnualInterestRate() {return annualInterestRate;}
 	java.util.Date getDateCreated() {return dateCreated;}
 	
 	void setId(int newId) {
@@ -34,11 +34,11 @@ class Account {
 	}
 	
 	static void setAnnualInterestRate(double newRate) {
-		annualIntrestRate = newRate;
+		annualInterestRate = newRate;
 	}
 	
 	double getMonthlyInterestRate() {
-		return annualIntrestRate / 12;
+		return annualInterestRate / 12;
 	}
 	
 	double getMonthlyInterest() {
@@ -53,7 +53,8 @@ class Account {
 		balance += Math.abs(amount);
 	}
 	
-	void toString() {
-		return "Account created on: " dateCreated + "\nID: " + id + "\nBalance: " + balance + "\nAnnual Interest Rate: " + annualIntrestRate + "%";
+	@Override
+	public String toString() {
+		return "Account created on: " + dateCreated + "\nID: " + id + "\nBalance: $" + balance + "\nAnnual Interest Rate: " + annualInterestRate + "%";
 	}
 }

@@ -8,6 +8,8 @@ Exercise 11_03: Checking and Savings accounts
 class CheckingAccount extends Account {
 	private double overdraftLimit = 0.0; //Positive number
 	
+	CheckingAccount(){};
+	
 	CheckingAccount(int newId, int startBalance, double overdraftLimit) {
 		super(newId, startBalance);
 		this.overdraftLimit = Math.abs(overdraftLimit);
@@ -19,7 +21,7 @@ class CheckingAccount extends Account {
 	@Override
 	void withdraw(double amount) {
 		if (amount > balance + overdraftLimit) {
-			System.out.println("Overdraft limit reached. Please try a different amount.")
+			System.out.println("Overdraft limit reached. Please try a different amount.");
 		}
 		else {
 			super.withdraw(amount);
@@ -27,7 +29,7 @@ class CheckingAccount extends Account {
 	}
 	
 	@Override
-	void toString() {
-		return "Checking " + super.toString() + "\nOverdraft Limit: " + overdraftLimit;
+	public String toString() {
+		return "Checking " + super.toString() + "\nOverdraft Limit: $" + overdraftLimit;
 	}
 }
