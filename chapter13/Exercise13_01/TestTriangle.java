@@ -3,7 +3,7 @@ Kevin Martinsen
 CSCI 1111 - OOP 1
 09/13/2021
 
-Exercise 11-01: Triangle Object Test
+Exercise 13_01: Triangle Object Test
 */
 import java.util.Scanner;
 

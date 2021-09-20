@@ -3,7 +3,7 @@ Kevin Martinsen
 CSCI 1111 - OOP 1
 09/13/2021
 
-Exercise 13-01: Triangle object for abstract GeometricObject
+Exercise 13_01: Triangle object for abstract GeometricObject
 */
 
 class Triangle extends GeometricObject {
