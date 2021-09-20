@@ -50,4 +50,8 @@ class Triangle extends GeometricObject {
 	public String toString(){
 		return "Triangle: side1 = " + side1 + " side2 = " + side2 + " side3 = " + side3;
 	}
+	
+	public static boolean isValid(double s1, double s2, double s3) {
+		return s1 + s2 > s3 && s1 + s3 > s2 && s2 + s3 > s1;
+	}
 }

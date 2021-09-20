@@ -16,6 +16,11 @@ public class TestTriangle {
 		double side2 = input.nextDouble();
 		double side3 = input.nextDouble();
 		
+		if (!Triangle.isValid(side1, side2, side3)) {
+			System.out.println("Invalid triangle side lengths.");
+			return;
+		}
+		
 		input.nextLine();
 		System.out.print("Enter a color for the triangle: ");
 		String color = input.nextLine();
