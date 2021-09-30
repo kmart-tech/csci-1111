@@ -11,11 +11,11 @@ public class Forest extends Biome {
     Forest(Point2D[] shape) {
         super(shape);
         // set biomeTiles?
-        generateLandscape();
+        generateBiomeTiles();
     }
 
     @Override
-    protected void generateLandscape() {
+    protected void generateBiomeTiles() {
 
     }
 }
