@@ -1,16 +1,20 @@
 package race;
 
-import java.util.HashSet;
+import biome.Biome;
 
+import java.util.ArrayList;
+
+// each player is a specific race
 public abstract class Race {
-    // each race has a name, buildings, win conditions
     private final String raceName;
     private final String playerName;
     private final Tile[] buildings;
+    private ArrayList<Biome> kingdoms;
 
-    Race(String raceName, String playerName) {
+    Race(String raceName, String playerName, Biome startLocation) {
         this.raceName = raceName;
-        this.playerName = playerName
+        this.playerName = playerName;
+        kingdoms.add(startLocation);
     }
 
     public static String getRaceName {
