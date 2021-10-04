@@ -1,14 +1,11 @@
 package biome;
 
 import javafx.geometry.Point2D;
-import race.Race;
-
-import java.util.ArrayList;
-import java.util.HashSet;
+import tile.Tile;
 
 public abstract class Biome {
 
-    private Tile[][] Tiles; //maybe just int?
+    protected Tile[][] tiles; //maybe just int?
     private int[] tileOffset;
     // count of each tile type?
 
@@ -20,7 +17,7 @@ public abstract class Biome {
     // add a function that returns specific kingdom object(s) from occupied players
 
     private void generateBiomeShape(Point2D[] shape) {
-        // go line by line to create the shape of Tiles and tileOffset
+        tiles = new Tile[50][50];
     }
 
     //maybe rename generateBiomeTiles
@@ -30,6 +27,8 @@ public abstract class Biome {
     public abstract boolean hasTile();
 
     public void replaceTile(Tile newTile, int x, int y) {
-        Tiles[y][x] = newTile;
+        tiles[y][x] = newTile;
     }
+
+    protected abstract void generateBiomeTiles();
 }
