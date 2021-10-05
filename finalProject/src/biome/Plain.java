@@ -5,15 +5,16 @@ import javafx.geometry.Point2D;
 import java.util.HashSet;
 
 public class Plain extends Biome {
-    private final HashSet<Tile> biomeTiles; // define or have a function pull the tiles from the tile class
-
-    Plain(Point2D[] shape) {
-        super(shape);
-        generateLandscape();
+    public Plain() {
     }
 
     @Override
-    protected void generateLandscape() {
+    public boolean hasTile() {
+        return false;
+    }
+
+    @Override
+    protected void generateBiomeTiles() {
 
     }
 }

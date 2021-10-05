@@ -1,6 +1,7 @@
 package race;
 
 import biome.Biome;
+import tile.Tile;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -9,7 +10,7 @@ import java.util.Arrays;
 // can this be used for all races? can also be extended i suppose
 public class Kingdom {
     private final Biome occupiedBiome;
-    private String[] buildings; //strings? Building Enum?
+    private Tile[] buildings; //strings? Building Enum?
     private ArrayList<Resource> resources; // maybe bonus for each resource so another hashmap
         // and maybe not string? just another int
 
