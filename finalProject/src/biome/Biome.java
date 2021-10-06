@@ -10,7 +10,7 @@ public abstract class Biome {
     private int[] tileOffset;
     Random rnd = new Random();
     // count of each tile type?
-    private static final String ANSI_GREEN_BACKGROUND = "\u001B[45m";
+    private static final String ANSI_GREEN_BACKGROUND = "\u001B[42m";
     private static final String ANSI_BLACK_BACKGROUND = "\u001B[49m";
 
     Biome() {
@@ -34,7 +34,8 @@ public abstract class Biome {
             for (int j = 0; j < tiles[i].length; j++) {
                 //print offset here
                 if (tiles[i][j] == biome.BiomeTile.TREE) {
-                    System.out.print(ANSI_GREEN_BACKGROUND + tiles[i][j].getTileChar() + " " + ANSI_BLACK_BACKGROUND);
+                    // order for the background matters if the space is before!
+                    System.out.print(ANSI_GREEN_BACKGROUND + tiles[i][j].getTileChar() + ANSI_BLACK_BACKGROUND + " ");
                 }
                 else {
                     System.out.print(tiles[i][j].getTileChar() + " ");
