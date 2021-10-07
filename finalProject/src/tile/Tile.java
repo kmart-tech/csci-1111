@@ -1,5 +1,6 @@
 package tile;
 
 public interface Tile {
-    char getTileChar();
+    // rename to toString or something
+    String printTile();
 }

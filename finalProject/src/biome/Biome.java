@@ -1,7 +1,6 @@
 package biome;
 
 import tile.Tile;
-
 import java.util.Random;
 
 
@@ -10,7 +9,6 @@ public abstract class Biome {
     private int[] tileOffset;
     Random rnd = new Random();
     // count of each tile type?
-    private static final String ANSI_GREEN_BACKGROUND = "\u001B[42m";
     private static final String ANSI_BLACK_BACKGROUND = "\u001B[49m";
 
     Biome() {
@@ -20,7 +18,7 @@ public abstract class Biome {
     // add a function that returns specific kingdom object(s) from occupied players
 
     private void generateBiomeShape() {
-        tiles = new Tile[50][50];
+        tiles = new Tile[40][40];
     }
 
     // Biome functions
@@ -30,20 +28,28 @@ public abstract class Biome {
     }
 
     public void printBiome() {
-        for (int i =0; i < tiles.length; i++) {
+        for (int i = 0; i < tiles.length; i++) {
             for (int j = 0; j < tiles[i].length; j++) {
                 //print offset here
-                if (tiles[i][j] == biome.BiomeTile.TREE) {
-                    // order for the background matters if the space is before!
-                    System.out.print(ANSI_GREEN_BACKGROUND + tiles[i][j].getTileChar() + ANSI_BLACK_BACKGROUND + " ");
+                    System.out.print(tiles[i][j].printTile() + " " + ANSI_BLACK_BACKGROUND);
                 }
-                else {
-                    System.out.print(tiles[i][j].getTileChar() + " ");
-                }
-            }
             System.out.println();
         }
     }
+
+    public String[] toStringArray() {
+        String[] biomeString = new String[tiles.length];
+        for (int i = 0; i < tiles.length; i++) {
+            StringBuilder line = new StringBuilder();
+            for (int j = 0; j < tiles[i].length; j++) {
+                line.append(tiles[i][j].printTile() + " " + ANSI_BLACK_BACKGROUND);
+            }
+            biomeString[i] = line.toString();
+        }
+        return biomeString;
+    }
+
+
 
     protected void tileGrow(final Tile tile, int iterations) {
         int row = rnd.nextInt(tiles.length);

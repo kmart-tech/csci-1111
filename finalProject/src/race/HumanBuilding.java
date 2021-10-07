@@ -4,10 +4,13 @@ import tile.BuildingTile;
 import tile.Tile;
 
 public enum HumanBuilding implements BuildingTile {
-    SETTLEMENT(100,100,50),
-    CASTLE(200, 500, 100),
-    HOUSE(50,50,10),
-    FARM(50,10,0);
+    SETTLEMENT(100,100,50,"S"),
+    CASTLE(200, 500, 100,"C"),
+    HOUSE(50,50,10,"H"),
+    FARM(50,10,0,"F");
+
+    private String tileString;
+    private static final String ANSI_YELLOW_BACKGROUND = "\u001B[103m";
 
     private int woodCost;
     private int stoneCost;
@@ -23,14 +26,15 @@ public enum HumanBuilding implements BuildingTile {
         return goldCost;
     }
 
-    HumanBuilding(int woodCost, int stoneCost, int goldCost) {
+    HumanBuilding(int woodCost, int stoneCost, int goldCost, String tileString) {
         this.woodCost = woodCost;
         this.stoneCost = stoneCost;
         this.goldCost = goldCost;
+        this.tileString = tileString;
     }
 
     @Override
-    public char getTileChar() {
-        return 0;
+    public String printTile() {
+        return ANSI_YELLOW_BACKGROUND + tileString;
     }
 }

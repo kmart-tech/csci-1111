@@ -42,6 +42,12 @@ public abstract class Race {
 
     public ArrayList<Kingdom> getKingdoms() {return kingdoms;}
 
+    public void update() {
+        for (Kingdom kingdom: kingdoms) {
+            kingdom.updateResources();
+        }
+    }
+
     public abstract void addKingdom(Biome newBiome);
 
     public abstract boolean checkWin();

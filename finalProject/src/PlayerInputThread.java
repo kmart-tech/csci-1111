@@ -1,11 +1,11 @@
 import java.util.Scanner;
 
-public class MyInputThread extends Thread {
+public class PlayerInputThread extends Thread {
     private Scanner input = new Scanner(System.in);
     private char key = 0;
     private volatile boolean running;
 
-    public MyInputThread() {
+    public PlayerInputThread() {
         this.running = true;
     }
 

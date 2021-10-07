@@ -3,21 +3,21 @@ package biome;
 import tile.Tile;
 
 public enum BiomeTile implements Tile {
-    GRASS('.'),
-    TREE('T'),
-    WATER('~'),
-    ROCK('R');
+    GRASS(" "),
+    TREE("\u001B[42m" + " "),
+    WATER("\u001B[44m" + " "),
+    ROCK("\u001B[100m"+ " ");
 
-    private char printChar;
-
-    public char getTileChar () { return printChar; }
-
+    private String tileString;
 
     //implement in all Tile interfaces, print which defines the colors for each one
     // return String: tile.COLOR + tile character + RESET
 
-    BiomeTile(char printChar) {
-        this.printChar = printChar;
+    BiomeTile(String tileString) {
+        this.tileString = tileString;
     }
+
+    public String printTile () { return tileString; }
+
 }
 

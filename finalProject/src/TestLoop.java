@@ -7,19 +7,21 @@ public class TestLoop {
     public static void main(String[] args) {
         Forest myForest = new Forest();
         Humans player1 = new Humans("KEVIN", myForest);
-        MyInputThread inputThread = new MyInputThread();
+        PlayerInputThread inputThread = new PlayerInputThread();
         inputThread.start();
 
         while (true) {
             if (inputThread.getKey() == 'b') {
                 int x = (int) (Math.random() * 40);
                 int y = (int) (Math.random() * 40);
-                myForest.replaceTile(biome.BiomeTile.ROCK, x, y);
+                myForest.replaceTile(race.HumanBuilding.HOUSE, x, y);
             }
 
             //render the world
             myForest.printBiome();
             System.out.print("Press B to build a settlement: ");
+            //System.out.print("\033[1A"); // move up 1 line
+            // System.out.print("\033[2K"); // clear line
             try {
                 sleep(1000);
             }

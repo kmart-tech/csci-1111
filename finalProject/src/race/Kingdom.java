@@ -34,5 +34,11 @@ public class Kingdom {
         return false;
     }
 
+    public void updateResources() {
+        for (Resource e: resources) {
+            e.grow();
+        }
+    }
+
     public Biome getBiome() { return occupiedBiome; }
 }
