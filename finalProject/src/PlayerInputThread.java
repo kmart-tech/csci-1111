@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 public class PlayerInputThread extends Thread {
-    private Scanner input = new Scanner(System.in);
+    private final Scanner input = new Scanner(System.in);
     private char key = 0;
     private volatile boolean running;
 
