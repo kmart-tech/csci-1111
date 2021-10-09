@@ -13,7 +13,7 @@ public abstract class Biome {
 
     Biome() {
         generateBiomeShape();
-    };
+    }
     
     // add a function that returns specific kingdom object(s) from occupied players
 
@@ -23,8 +23,13 @@ public abstract class Biome {
 
     // Biome functions
 
-    public void replaceTile(Tile newTile, int x, int y) {
-        tiles[y][x] = newTile;
+    public boolean replaceTile(Tile newTile, int row, int col) {
+        if (row > 0 && row < tiles.length) {
+            if (col > 0 && col < tiles[row].length) tiles[row][col] = newTile;
+            return true;
+        }
+        else
+            return false;
     }
 
     // depreciated
@@ -49,8 +54,6 @@ public abstract class Biome {
         }
         return biomeString;
     }
-
-
 
     protected void tileGrow(final Tile tile, int iterations) {
         int row = rnd.nextInt(tiles.length);

@@ -56,6 +56,8 @@ public class Game {
         }
     }
 
+    /*
+    // dont use
     private static String[][] getBoard(char input) {
         String[] board = new String[40]; // size of biomes?
         String[] menu = new String[40];
@@ -68,6 +70,7 @@ public class Game {
                 throw new IllegalStateException("Unexpected value: " + 'B');
         }
     }
+     */
 }
 
 

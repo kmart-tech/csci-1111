@@ -1,32 +1,27 @@
 package race;
 
 import biome.Biome;
-import tile.Tile;
+
+import static race.Resource.*;
 
 // Has buildings, magic / technology, religion?, trading, exploring
 // resources: wood, stone, water?
 // money
 public class Humans extends Race {
-    // default kingdom resources
-    private static final Resource[] defaultResources = {
-            new Resource("Food", 100.0, 1.0),
-            new Resource("Wood", 100.0, 1.0),
-            new Resource("Stone", 100.0, 1.0),
-            new Resource("Gold", 100.0, 0.0)
+    // default kingdom resources and population (no max population? maybe just logarithm it
+    private static final Asset[] defaultResources = {
+            new Asset(POPULATION, 10.0, .05),
+            new Asset(FOOD, 100.0, 1.0),
+            new Asset(WOOD, 100.0, 1.0),
+            new Asset(STONE, 100.0, 1.0),
+            new Asset(GOLD, 100.0, 0.0)
         };
+
+    public static final String[] actions = {"(B)uild"};
 
     public Humans(String playerName, Biome startBiome) {
         super("Humans", playerName, HumanBuilding.values(), new Kingdom(startBiome, defaultResources));
     }
-
-    /* dont need to implement here
-    public String[] buildOptions() {
-        String[] buildings =
-        for (HumanBuilding e: HumanBuilding.values()) {
-            e.name().
-        }
-    }
-     */
 
     public HumanBuilding[] getBuildings() { return HumanBuilding.values(); }
 
@@ -39,4 +34,31 @@ public class Humans extends Race {
     public boolean checkWin() {
         return false;
     }
+
+    public String[] getActions() {
+        return actions;
+    }
+
+    public boolean build(HumanBuilding building, Kingdom currentKingdom) {
+        return false;
+        //if ()
+    }
+
+    /*
+    public boolean doAction(char input) {
+        switch(input) {
+            case 'B':
+
+        }
+    }
+    /*
+    humans do the following actions
+    Build -
+    - build a castle if they have the follow resources and conditions (settlement and so many farms)
+    Units -
+    - send unit to place
+    - do action with unit?
+    Explore or other action types?
+     */
+
 }

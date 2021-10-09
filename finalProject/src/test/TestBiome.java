@@ -1,3 +1,5 @@
+package test;
+
 import biome.Forest;
 
 import static java.lang.Thread.sleep;

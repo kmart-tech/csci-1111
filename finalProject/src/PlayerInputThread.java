@@ -22,6 +22,8 @@ public class PlayerInputThread extends Thread {
     @Override
     public void run() {
         while (running) {
+            // maybe if the first char is a char then return that
+            // and if the first char is an int then send the whole line?
             key = input.next().charAt(0);
         }
     }

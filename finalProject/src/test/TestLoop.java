@@ -1,3 +1,5 @@
+package test;
+
 import biome.Forest;
 import race.Humans;
 

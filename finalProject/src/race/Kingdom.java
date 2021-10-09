@@ -1,44 +1,58 @@
 package race;
 
 import biome.Biome;
+import tile.BuildingTile;
 import tile.Tile;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
 
-// can this be used for all races? can also be extended i suppose
 public class Kingdom {
     private final Biome occupiedBiome;
-    private Tile[] buildings; //strings? Building Enum?
-    private ArrayList<Resource> resources; // maybe bonus for each resource so another hashmap
-        // and maybe not string? just another int
+    private Tile[] buildings;
+    private ArrayList<Asset> resources;
+    // population is a resource
 
-    public Kingdom (Biome occupiedBiome, Resource[] startResources) {
+    public Kingdom (Biome occupiedBiome, Asset[] startResources) {
         this.occupiedBiome = occupiedBiome;
-        resources = new ArrayList<Resource>(Arrays.asList(startResources));
+        resources = new ArrayList<Asset>(Arrays.asList(startResources));
     }
 
     public boolean addResource(String name, double amount, double rate) {
-        for (Resource e: resources) {
+        for (Asset e: resources) {
             if (e.getName().equals(name)) return false;
         }
-        resources.add(new Resource(name, amount, rate));
+        resources.add(new Asset(name, amount, rate));
         return true;
     }
 
     public boolean hasResource(String name) {
-        for (Resource e: resources) {
+        for (Asset e: resources) {
             if (e.getName().equals(name)) return true;
         }
         return false;
     }
 
     public void updateResources() {
-        for (Resource e: resources) {
+        for (Asset e: resources) {
             e.grow();
         }
     }
 
+    public ArrayList<Asset> getResources() {
+        return resources;
+    }
+
     public Biome getBiome() { return occupiedBiome; }
+
+    public boolean build(BuildingTile building, int row, int col) {
+        // build conditions:
+        // valid location in the biome
+        // has resources
+        for (Asset e: resources) {
+            //if (e.getAmount() < building.)
+        }
+        return false;
+    }
 }

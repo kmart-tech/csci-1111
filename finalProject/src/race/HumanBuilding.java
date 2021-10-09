@@ -2,14 +2,42 @@ package race;
 
 import tile.BuildingTile;
 import tile.Tile;
+import static race.Resource.*;
+
+import java.util.EnumMap;
+
+// Should this be put in Humans class file and be named enum Buildings?
+// then each race just has the form of RACE.Buildings."..."???
+// can they still use implements?
+
+// Maybe just in a human folder that would give the same effect?
 
 public enum HumanBuilding implements BuildingTile {
-    SETTLEMENT(100,100,50,"S"),
-    CASTLE(200, 500, 100,"C"),
-    HOUSE(50,50,10,"H"),
-    FARM(50,10,0,"F");
+    SETTLEMENT("S", new EnumMap<Resource, Integer>(Resource.class) {{
+        put(WOOD, 50);
+        put(STONE, 50);
+        put(GOLD, 10);
+    }} ), // change to unit settlers?
+    CASTLE("C", new EnumMap<Resource, Integer>(Resource.class) {{
+        put(WOOD, 100);
+        put(STONE, 100);
+        put(GOLD, 100);
+    }} ),
+    HOUSE("H", new EnumMap<Resource, Integer>(Resource.class) {{
+        put(WOOD, 50);
+        put(STONE, 10);
+        put(GOLD, 10);
+    }} ),
+    FARM("F", new EnumMap<Resource, Integer>(Resource.class) {{
+        put(WOOD, 10);
+        put(STONE, 10);
+    }} );
 
-    private String tileString;
+    // do a map of <resource, cost> then a function related to it for when building cost
+
+    private final EnumMap<Resource, Integer> resourceCost;
+
+    private final String tileString;
     private static final String ANSI_YELLOW_BACKGROUND = "\u001B[103m";
 
     private int woodCost;
@@ -26,11 +54,9 @@ public enum HumanBuilding implements BuildingTile {
         return goldCost;
     }
 
-    HumanBuilding(int woodCost, int stoneCost, int goldCost, String tileString) {
-        this.woodCost = woodCost;
-        this.stoneCost = stoneCost;
-        this.goldCost = goldCost;
+    HumanBuilding(String tileString, EnumMap<Resource, Integer> resourceCost) {
         this.tileString = tileString;
+        this.resourceCost = resourceCost;
     }
 
     @Override
