@@ -54,6 +54,14 @@ public class Kingdom {
         return resources;
     }
 
+    public ArrayList<String> resourcesToString() {
+        //copy biome to stringArray?
+        String[] resourcesString = new String[resources.size()];
+        for (Asset resource: resources) {
+            resourcesString[i]
+        }
+    }
+
     public Biome getBiome() { return occupiedBiome; }
 
     public boolean build(final BuildingTile building, final int row, final int col) {

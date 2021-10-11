@@ -1,3 +1,4 @@
+// maybe should take another argument that prints above menu called stats?
 public class PrintTerminal {
     public static void printGame(String[] board, String[] menu, int menuWidth) {
         // make String[] a multi-argument variable?
