@@ -12,16 +12,10 @@ public abstract class Race {
     private final String playerName;
     private final BuildingTile[] raceBuildings;
     protected ArrayList<Kingdom> kingdoms = new ArrayList<Kingdom>();
-    protected ArrayList<Biome> visibleBiomes = new ArrayList<Biome>();
+    protected ArrayList<Biome> visibleBiomes = new ArrayList<Biome>(); // maybe should be a matrix the same size as map with boolean values
+    // or maybe the Map class has the visible biomes for each player? (easier interactions?)
     // should default resources be included?
 
-    /* Might not need this:
-        Race(String raceName, String playerName, BuildingTile[] buildings) {
-        this.raceName = raceName;
-        this.playerName = playerName;
-        this.buildings = buildings;
-    }
-    */
 
     Race(String raceName, String playerName, BuildingTile[] raceBuildings, Kingdom startLocation) {
         this.raceName = raceName;
@@ -50,6 +44,13 @@ public abstract class Race {
         }
     }
 
+    public Kingdom getKingdom(Biome biome) {
+        for (Kingdom k: kingdoms) {
+            if (k.getBiome() == biome) return k;
+        }
+        return null;
+    }
+
     public abstract void addKingdom(Biome newBiome);
 
     public abstract boolean checkWin();
@@ -66,11 +67,13 @@ public abstract class Race {
     */
 
 
+        /*
+    // map view or specific Kingdom view
     protected String[] generalMenu(char input, Kingdom kingdom) {
         String[] outputString = new String[];
         switch(input) {
             // no input from user
-            case 0:
+            case "":
                 for (e: kingdom.getResources()) {
 
 
@@ -78,6 +81,7 @@ public abstract class Race {
 
         return outputString;
     }
+    */
 
 
 

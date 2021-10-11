@@ -8,11 +8,15 @@ import java.util.Random;
 public abstract class Biome {
     protected Tile[][] tiles; //maybe just int?
     private int[] tileOffset;
-    Random rnd = new Random();
+    private final String mapTile;
+    private final int[] mapLocation;
     // count of each tile type?
     private static final String ANSI_BLACK_BACKGROUND = "\u001B[49m";
+    protected Random rnd = new Random();
 
-    Biome() {
+    Biome(String mapTile, int row, int col) {
+        this.mapTile = mapTile;
+        mapLocation = new int[]{row, col};
         generateBiomeShape();
     }
     
@@ -34,6 +38,14 @@ public abstract class Biome {
             }
         }
         return false;
+    }
+
+    public String getMapTile() {
+        return mapTile;
+    }
+
+    public int[] getMapLocation() {
+        return mapLocation;
     }
 
     // depreciated

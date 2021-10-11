@@ -16,18 +16,28 @@ public class Map {
         return map[row][column];
     }
 
-    //public String[] getStringArray() {    }
+    public String[] toStringArray() {
+        String[] biomeString = new String[map.length];
+        for (int i = 0; i < map.length; i++) {
+            StringBuilder line = new StringBuilder();
+            for (int j = 0; j < map[i].length; j++) {
+                line.append(map[i][j].getMapTile() + " ");
+            }
+            biomeString[i] = line.toString();
+        }
+        return biomeString;
+    }
 
     // could use biome generation here
-    public void generate() {
-        for (int i = 0; i < map.length; i++) {
-            for (int j = 0; j < map[i].length; j++) {
+    private void generate() {
+        for (int row = 0; row < map.length; row++) {
+            for (int col = 0; col < map[row].length; col++) {
                 int x = new Random().nextInt(2); // gives 0 or 1 for forest or plain
                 if (x == 0) {
-                    map[i][j] = new Forest();
+                    map[row][col] = new Forest(row, col);
                 }
                 else {
-                    map[i][j] = new Plain();
+                    map[row][col] = new Plain(row, col);
                 }
             }
         }

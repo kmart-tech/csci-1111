@@ -6,10 +6,11 @@ import java.util.Random;
 import static biome.BiomeTile.*;
 
 public class Forest extends Biome {
-    Random rnd = new Random();
+    //Random rnd = new Random();
     // int forestGrowths here?
 
-    public Forest() {
+    public Forest(int row, int col) {
+        super("F", row, col);
         generateBiomeTiles();
     }
 

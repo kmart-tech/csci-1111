@@ -1,11 +1,14 @@
 import biome.*;
 import race.Humans;
 
-import java.util.Random;
 import java.util.Scanner;
 
-import static java.lang.Thread.currentThread;
 import static java.lang.Thread.sleep;
+
+enum View {
+    BIOMEVIEW,
+    MAPVIEW;
+}
 
 public class Game {
     public static void main(String[] args) {
@@ -21,13 +24,15 @@ public class Game {
         int startRow = 1;
         int startColumn = 1;
 
-        Humans player1 = new Humans(playerName, map.getBiome(startRow, startColumn));
+        Biome currentBiome = map.getBiome(startRow, startColumn);
+
+        Humans player1 = new Humans(playerName, currentBiome);
+
+
+        View currentScreen = View.BIOMEVIEW;
 
         PlayerInputThread inputThread = new PlayerInputThread();
         inputThread.start();
-
-        String[][] currentScreen = new String[2][];
-        currentScreen = getBoard('0'); // some default menu
 
         //start game loop (what order should things be done?)
         while (!player1.checkWin()) {
@@ -36,15 +41,31 @@ public class Game {
             // for each loop
             player1.update();
 
-            char player1Input = inputThread.getKey();
-            currentScreen = getBoard(player1Input);
-
             // check for user input
-            // String[] menu = menu(getInput(inputThread)))???
-            //getInput(inputThread.getKey());
+            if (currentScreen == View.BIOMEVIEW) {
+                char player1char = inputThread.getChar();
+                System.out.println("Player Char: " + player1char);
+                if (player1char == 'M') currentScreen = View.MAPVIEW;
+                else if (player1char == 'B') {
+                    // build
+                }
+            }
+            else if (currentScreen == View.MAPVIEW) {
+                int player1int = inputThread.getInt();
+                if (player1int >= 0 && player1int < player1.getKingdoms().size() ) {
+                    currentBiome = player1.getKingdoms().get(player1int).getBiome();
+                    currentScreen = View.BIOMEVIEW;
+                }
+            }
 
             // draw board and menu
-            PrintTerminal.printGame(currentScreen[0], currentScreen[1], 20);
+            if (currentScreen == View.BIOMEVIEW) {
+                PrintTerminal.printBiomeView(player1, currentBiome);
+            }
+            else if (currentScreen == View.MAPVIEW) {
+                PrintTerminal.printMapView(player1, map);
+            }
+
             try {
                 sleep(1000);
             } catch (InterruptedException ex) {
@@ -56,21 +77,7 @@ public class Game {
         }
     }
 
-    /*
-    // dont use
-    private static String[][] getBoard(char input) {
-        String[] board = new String[40]; // size of biomes?
-        String[] menu = new String[40];
 
-        switch (input) {
-            case 'B': // build
-                break;
-
-            default:
-                throw new IllegalStateException("Unexpected value: " + 'B');
-        }
-    }
-     */
 }
 
 
