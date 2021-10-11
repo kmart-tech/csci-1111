@@ -34,9 +34,8 @@ public class PlayerInputThread extends Thread {
     }
 
     public char getChar() {
-        char temp = output.charAt(0);
+        char temp = output.toUpperCase().charAt(0);
         this.output = "x";
-        System.out.println("Get char called:" + output);
         return temp;
     }
 
@@ -47,10 +46,7 @@ public class PlayerInputThread extends Thread {
         while (running) {
             // maybe if the first char is a char then return that
             // and if the first char is an int then send the whole line?
-            //if (input.hasNextLine()) {
                 output = input.next();
-             //   System.out.println("Input!");
-            //}
         }
     }
 }

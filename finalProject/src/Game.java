@@ -12,14 +12,14 @@ enum View {
 
 public class Game {
     public static void main(String[] args) {
-        Scanner startInput = new Scanner(System.in);
+        //Scanner startInput = new Scanner(System.in);
         //setup board and players
         Map map = new Map(5,5);
 
         System.out.println("Kingdoms Game - Version Alpha-Alpha");
         System.out.print("Enter name: ");
-        String playerName = startInput.nextLine();
-        startInput.close();
+        String playerName = "Kevin";
+        //startInput.close();
 
         int startRow = 1;
         int startColumn = 1;
@@ -44,7 +44,6 @@ public class Game {
             // check for user input
             if (currentScreen == View.BIOMEVIEW) {
                 char player1char = inputThread.getChar();
-                System.out.println("Player Char: " + player1char);
                 if (player1char == 'M') currentScreen = View.MAPVIEW;
                 else if (player1char == 'B') {
                     // build
