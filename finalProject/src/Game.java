@@ -46,7 +46,7 @@ public class Game {
                 char player1char = inputThread.getChar();
                 if (player1char == 'M') currentScreen = View.MAPVIEW;
                 else if (player1char == 'B') {
-                    // build
+                    // buildVIEW?
                 }
             }
             else if (currentScreen == View.MAPVIEW) {

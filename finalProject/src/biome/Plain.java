@@ -21,18 +21,18 @@ public class Plain extends Biome {
     @Override
     protected void generateBiomeTiles() {
         // base it on number of total tiles
-        int forestGrowths = rnd.nextInt(3) + 20; // rename to grass
-        int rockGrowths = 7;
+        int forestGrowths = rnd.nextInt(3) + 5; // rename to grass
+        int rockGrowths = 5;
         int waterGrowths = 2;
 
-        // create a TREE filled biome first
+        // create a Grass filled biome first
         for (tile.Tile[] tilesRow : tiles) {
-            Arrays.fill(tilesRow, TREE);
+            Arrays.fill(tilesRow, GRASS);
         }
 
-        // grow GRASS numTreeGrowths times
+        // grow TREE numTreeGrowths times
         for (int i = 0; i < forestGrowths; i++) {
-            this.tileGrow(GRASS, 50);
+            this.tileGrow(TREE, 20);
         }
 
         // rock generation
@@ -42,7 +42,7 @@ public class Plain extends Biome {
 
         // water generation
         for (int i = 0; i < waterGrowths; i++) {
-            this.tileGrow(WATER, 30);
+            this.tileGrow(WATER, 20);
         }
     }
 }
