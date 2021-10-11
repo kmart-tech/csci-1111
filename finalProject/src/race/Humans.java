@@ -39,10 +39,6 @@ public class Humans extends Race {
         return actions;
     }
 
-    public boolean build(HumanBuilding building, Kingdom currentKingdom) {
-        return false;
-        //if ()
-    }
 
     /*
     public boolean doAction(char input) {

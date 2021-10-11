@@ -65,9 +65,9 @@ public abstract class Race {
     - view a biome they have vision of (or had vision of)
     */
 
-    /*
+
     protected String[] generalMenu(char input, Kingdom kingdom) {
-        ArrayList<String> outputString = new ArrayList<String>();
+        String[] outputString = new String[];
         switch(input) {
             // no input from user
             case 0:
@@ -79,7 +79,7 @@ public abstract class Race {
         return outputString;
     }
 
-     */
+
 
     //public abstract Tile getBuildings()
 }

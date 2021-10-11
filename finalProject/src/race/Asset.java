@@ -1,6 +1,7 @@
 package race;
 
-// assests a kingdom (or thing) possesses such as wood, population
+// assests a kingdom (or thing) possesses such as wood, population, gold...
+// and describes how that resource grows
 public class Asset {
     private final Resource resource;
     private double amount = 0.0;
@@ -19,7 +20,7 @@ public class Asset {
     public void addToRate(double rate) { this.rate += rate;}
     public void addToBonus(double bonus) { this.bonus += bonus;}
 
-    public
+    public Resource getResource() {return resource;}
     public double getAmount() {return amount;}
     public double getRate() { return rate; }
     public double getBonus() { return bonus; }

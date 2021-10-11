@@ -1,7 +1,7 @@
 package race;
 
 import tile.BuildingTile;
-import tile.Tile;
+
 import static race.Resource.*;
 
 import java.util.EnumMap;
@@ -13,50 +13,53 @@ import java.util.EnumMap;
 // Maybe just in a human folder that would give the same effect?
 
 public enum HumanBuilding implements BuildingTile {
-    SETTLEMENT("S", new EnumMap<Resource, Integer>(Resource.class) {{
-        put(WOOD, 50);
-        put(STONE, 50);
-        put(GOLD, 10);
+    SETTLEMENT("S", new EnumMap<Resource, Double>(Resource.class) {{
+        put(WOOD, 50.0);
+        put(STONE, 50.0);
+        put(GOLD, 10.0);
     }} ), // change to unit settlers?
-    CASTLE("C", new EnumMap<Resource, Integer>(Resource.class) {{
-        put(WOOD, 100);
-        put(STONE, 100);
-        put(GOLD, 100);
+    CASTLE("C", new EnumMap<Resource, Double>(Resource.class) {{
+        put(WOOD, 100.0);
+        put(STONE, 100.0);
+        put(GOLD, 100.0);
     }} ),
-    HOUSE("H", new EnumMap<Resource, Integer>(Resource.class) {{
-        put(WOOD, 50);
-        put(STONE, 10);
-        put(GOLD, 10);
+    HOUSE("H", new EnumMap<Resource, Double>(Resource.class) {{
+        put(WOOD, 50.0);
+        put(STONE, 10.0);
+        put(GOLD, 10.0);
     }} ),
-    FARM("F", new EnumMap<Resource, Integer>(Resource.class) {{
-        put(WOOD, 10);
-        put(STONE, 10);
+    FARM("F", new EnumMap<Resource, Double>(Resource.class) {{
+        put(WOOD, 10.0);
+        put(STONE, 10.0);
     }} );
 
     // do a map of <resource, cost> then a function related to it for when building cost
 
-    private final EnumMap<Resource, Integer> resourceCost;
+    private final EnumMap<Resource, Double> resourceCost;
 
     private final String tileString;
     private static final String ANSI_YELLOW_BACKGROUND = "\u001B[103m";
 
-    private int woodCost;
-    private int stoneCost;
-    private int goldCost;
+    private double woodCost;
+    private double stoneCost;
+    private double goldCost;
 
-    public int getWoodCost() {
-        return this.woodCost;
-    }
-    public int getStoneCost() {
-        return stoneCost;
-    }
-    public int getGoldCost() {
-        return goldCost;
-    }
-
-    HumanBuilding(String tileString, EnumMap<Resource, Integer> resourceCost) {
+    HumanBuilding(String tileString, EnumMap<Resource, Double> resourceCost) {
         this.tileString = tileString;
         this.resourceCost = resourceCost;
+    }
+
+    public double getWoodCost() {
+        return this.woodCost;
+    }
+    public double getStoneCost() {
+        return stoneCost;
+    }
+    public double getGoldCost() {
+        return goldCost;
+    }
+    public EnumMap<Resource, Double> getResourceCost() {
+        return resourceCost;
     }
 
     @Override

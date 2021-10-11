@@ -1,5 +1,6 @@
 package biome;
 
+import tile.BuildingTile;
 import tile.Tile;
 import java.util.Random;
 
@@ -25,11 +26,14 @@ public abstract class Biome {
 
     public boolean replaceTile(Tile newTile, int row, int col) {
         if (row > 0 && row < tiles.length) {
-            if (col > 0 && col < tiles[row].length) tiles[row][col] = newTile;
-            return true;
+            if (col > 0 && col < tiles[row].length) {
+                if (!(tiles[row][col] instanceof BuildingTile)) {
+                    tiles[row][col] = newTile;
+                    return true;
+                }
+            }
         }
-        else
-            return false;
+        return false;
     }
 
     // depreciated
