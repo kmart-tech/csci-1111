@@ -16,7 +16,7 @@ public enum HumanBuilding implements BuildingTile {
     SETTLEMENT("S", new EnumMap<Resource, Double>(Resource.class) {{
         put(WOOD, 50.0);
         put(STONE, 50.0);
-        put(GOLD, 10.0);
+        put(GOLD, 50.0);
     }} ), // change to unit settlers?
     CASTLE("C", new EnumMap<Resource, Double>(Resource.class) {{
         put(WOOD, 100.0);
@@ -38,26 +38,14 @@ public enum HumanBuilding implements BuildingTile {
     private final EnumMap<Resource, Double> resourceCost;
 
     private final String tileString;
-    private static final String ANSI_YELLOW_BACKGROUND = "\u001B[103m";
+    private static final String ANSI_YELLOW_BACKGROUND = "\u001B[41m";
 
-    private double woodCost;
-    private double stoneCost;
-    private double goldCost;
 
     HumanBuilding(String tileString, EnumMap<Resource, Double> resourceCost) {
         this.tileString = tileString;
         this.resourceCost = resourceCost;
     }
 
-    public double getWoodCost() {
-        return this.woodCost;
-    }
-    public double getStoneCost() {
-        return stoneCost;
-    }
-    public double getGoldCost() {
-        return goldCost;
-    }
     public EnumMap<Resource, Double> getResourceCost() {
         return resourceCost;
     }

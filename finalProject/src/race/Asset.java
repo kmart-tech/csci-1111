@@ -5,8 +5,15 @@ package race;
 public class Asset {
     private final Resource resource;
     private double amount = 0.0;
-    private double rate = 1.0;
+    private double rate = 0.0;
     private double bonus = 1.0;
+
+    Asset(Asset someAsset) {
+        this.resource = someAsset.getResource();
+        this.amount = someAsset.getAmount();
+        this.rate = someAsset.getRate();
+        this.bonus = someAsset.getBonus();
+    }
 
     Asset(Resource resource) {this.resource = resource;}
 

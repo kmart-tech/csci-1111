@@ -28,16 +28,19 @@ public abstract class Biome {
 
     // Biome functions
 
-    public boolean replaceTile(Tile newTile, int row, int col) {
+    public void replaceTile(Tile newTile, int row, int col) {
+        tiles[row][col] = newTile;
+    }
+
+    public boolean validBuildingLocation(int row, int col) {
         if (row > 0 && row < tiles.length) {
             if (col > 0 && col < tiles[row].length) {
-                if (!(tiles[row][col] instanceof BuildingTile)) {
-                    tiles[row][col] = newTile;
-                    return true;
+                if (tiles[row][col] instanceof BuildingTile || tiles[row][col] == BiomeTile.ROCK) {
+                    return false;
                 }
             }
         }
-        return false;
+        return true;
     }
 
     public String getMapTile() {

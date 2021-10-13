@@ -38,17 +38,25 @@ public abstract class Race {
 
     public ArrayList<Kingdom> getKingdoms() {return kingdoms;}
 
-    public void update() {
-        for (Kingdom kingdom: kingdoms) {
-            kingdom.updateResources();
-        }
-    }
-
     public Kingdom getKingdom(Biome biome) {
         for (Kingdom k: kingdoms) {
             if (k.getBiome() == biome) return k;
         }
         return null;
+    }
+
+    public ArrayList<Biome> getBiomes() {
+        ArrayList<Biome> playerBiomes = new ArrayList<Biome>();
+        for (Kingdom kingdom: kingdoms) {
+            playerBiomes.add(kingdom.getBiome());
+        }
+        return playerBiomes;
+    }
+
+    public void update() {
+        for (Kingdom kingdom: kingdoms) {
+            kingdom.updateResources();
+        }
     }
 
     public abstract void addKingdom(Biome newBiome);

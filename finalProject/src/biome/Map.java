@@ -21,7 +21,7 @@ public class Map {
         for (int i = 0; i < map.length; i++) {
             StringBuilder line = new StringBuilder();
             for (int j = 0; j < map[i].length; j++) {
-                line.append(map[i][j].getMapTile() + " ");
+                line.append(map[i][j].getMapTile() + "  ");
             }
             biomeString[i] = line.toString();
         }

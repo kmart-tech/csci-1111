@@ -1,6 +1,8 @@
 package race;
 
 import biome.Biome;
+import java.util.EnumMap;
+import java.util.Map;
 
 import static race.Resource.*;
 
@@ -10,11 +12,11 @@ import static race.Resource.*;
 public class Humans extends Race {
     // default kingdom resources and population (no max population? maybe just logarithm it
     private static final Asset[] defaultResources = {
-            new Asset(POPULATION, 10.0, .05),
+            new Asset(POPULATION, 10.0, 0.05),
             new Asset(FOOD, 100.0, 1.0),
             new Asset(WOOD, 100.0, 1.0),
             new Asset(STONE, 100.0, 1.0),
-            new Asset(GOLD, 100.0, 0.0)
+            new Asset(GOLD, 60.0, 1.0)
         };
 
     //public static final String[] actions = {"(B)uild"};
@@ -24,6 +26,22 @@ public class Humans extends Race {
     }
 
     public HumanBuilding[] getBuildings() { return HumanBuilding.values(); }
+
+    // should this be in Kingdom instead?
+    public String[] buildOptions() {
+        String[] optionsArray = new String[HumanBuilding.values().length];
+        //optionsArray[0] = " - - - BUILD OPTIONS - - - ";
+        for (int i = 0; i < optionsArray.length; i++) {
+            StringBuilder line = new StringBuilder();
+            HumanBuilding building = HumanBuilding.values()[i];
+            line.append((i) + ") " + building.name() + " | ");
+            for (Map.Entry<Resource, Double> mapEntry : building.getResourceCost().entrySet()) {
+                line.append(mapEntry.getKey().name() + ": " + mapEntry.getValue().intValue() + " ");
+            }
+            optionsArray[i] = line.toString();
+        }
+        return optionsArray;
+    }
 
     @Override
     public void addKingdom(Biome newBiome) {

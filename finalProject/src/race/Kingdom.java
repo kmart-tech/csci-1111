@@ -12,12 +12,14 @@ import java.util.Map;
 public class Kingdom {
     private final Biome occupiedBiome;
     private Tile[] buildings;
-    private ArrayList<Asset> resources; // maybe this should be an EnumMap of <Resource, Asset>
+    private ArrayList<Asset> resources = new ArrayList<Asset>(); // maybe this should be an EnumMap of <Resource, Asset>
     // population is a resource
 
     public Kingdom (Biome occupiedBiome, Asset[] startResources) {
         this.occupiedBiome = occupiedBiome;
-        resources = new ArrayList<Asset>(Arrays.asList(startResources));
+        for (Asset resource: startResources) {
+            resources.add(new Asset(resource));
+        }
     }
 
     public boolean newResource(Resource newResource, double amount, double rate) {
@@ -50,27 +52,13 @@ public class Kingdom {
         }
     }
 
-    public ArrayList<Asset> getResources() {
-        return resources;
-    }
-
-    /*/ need to finish
-    public ArrayList<String> resourcesToString() {
-        //copy biome to stringArray?
-        String[] resourcesString = new String[resources.size()];
-        for (Asset resource: resources) {
-            resourcesString[i];
-        }
-    }
-    */
-
-    public Biome getBiome() { return occupiedBiome; }
-
-    public int[] getMapLocation(){ return occupiedBiome.getMapLocation(); }
-
-    public boolean build(final BuildingTile building, final int row, final int col) {
-
+    public boolean payForBuilding(BuildingTile building) {
         // check for required resources and amount
+        int[] resourcesToPay = new int[building.getResourceCost().size()];
+        double[] costArray = new double[building.getResourceCost().size()];
+        int counter = 0;
+
+        // TODO: enumerate over the building resources not the kingdom resources
         for (Map.Entry<Resource, Double> mapEntry : building.getResourceCost().entrySet()) {
             boolean foundResource = false;
             for (int i = 0; i < resources.size(); i++) {
@@ -79,7 +67,9 @@ public class Kingdom {
                     // found the matching resource
                     if (resources.get(i).getAmount() >= mapEntry.getValue()) {
                         // do we have enough resource?
-                        resources.get(i).addToAmount(-mapEntry.getValue());
+                        resourcesToPay[counter] = i;
+                        costArray[counter] = mapEntry.getValue();
+                        counter++;
                         foundResource = true;
                         break;
                     }
@@ -88,9 +78,35 @@ public class Kingdom {
             }
             if (!foundResource) return false; // didn't have that specific resource or amount
         }
-        // build it if a valid location (replaceTile might do too much)
-        // apply the building's effect (increase food, population rate, etc...)
-        // if (below) then apply (effect from building)
-        return occupiedBiome.replaceTile(building, row, col);
+        // pay for the costs
+        for (int i = 0; i < resourcesToPay.length; i++) {
+            resources.get(resourcesToPay[i]).addToAmount(-costArray[i]);
+        }
+        return true;
+    }
+
+    public ArrayList<Asset> getResources() {
+        return resources;
+    }
+
+    public Biome getBiome() { return occupiedBiome; }
+
+    public int[] getMapLocation(){ return occupiedBiome.getMapLocation(); }
+
+    public boolean build(final BuildingTile building, final int row, final int col) {
+        if (!occupiedBiome.validBuildingLocation(row, col)) {
+            return false;
+        }
+
+        // check for resources then pay for them
+        if (!payForBuilding(building)) {
+            return false;
+        }
+
+
+        //TODO: apply the building's effect (increase food, population rate, etc...)
+        occupiedBiome.replaceTile(building, row, col);
+        return true;
     }
 }
+

@@ -26,12 +26,11 @@ public class PrintTerminal {
     }
 
     // maybe split to biome view and kingdom view?
-    public static void printBiomeView(Race player, Biome currentBiome) {
+    public static void printKingdomView(Race player, Biome currentBiome, String[] menuOptions) {
         String[] biomeMenu;
         Kingdom currentKingdom = player.getKingdom(currentBiome);
         if (currentKingdom != null) {
             // Kingdom view
-            String[] menuOptions = {"", "(B)uild", "(M)ap"};
 
             ArrayList<Asset> currentResouces = currentKingdom.getResources();
             biomeMenu = new String[currentResouces.size() + menuOptions.length];
