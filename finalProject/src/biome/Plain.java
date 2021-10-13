@@ -14,11 +14,6 @@ public class Plain extends Biome {
     }
 
     @Override
-    public boolean hasTile() {
-        return false;
-    }
-
-    @Override
     protected void generateBiomeTiles() {
         // base it on number of total tiles
         int forestGrowths = rnd.nextInt(3) + 5; // rename to grass

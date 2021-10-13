@@ -6,8 +6,13 @@ import race.Race;
 
 import java.util.ArrayList;
 
-// maybe should take another argument that prints above menu called stats?
+// could overload the method to just be printScreen (map), (kingdom) and (biome)
 public class PrintTerminal {
+    /**
+     * Wrapper method for private method printScreen that prints the map and the player's kingdoms.
+     * @param player
+     * @param map
+     */
     public static void printMapView(Race player, Map map) {
         // Map view (see visible biomes (not implemented) and owned Kingdoms)
         String[] menuOptions = {"", "Enter the number to go to that Kingdom."};
@@ -22,11 +27,18 @@ public class PrintTerminal {
         System.arraycopy(menuOptions, 0, mapMenu, 1 + player.getKingdoms().size(), menuOptions.length);
 
 
-        printScreen(map.toStringArray(), mapMenu, 100);
+        printScreen(map.toStringArray(), mapMenu);
     }
 
     // maybe split to biome view and kingdom view?
-    public static void printKingdomView(Race player, Biome currentBiome, String[] menuOptions) {
+
+    /**
+     * Wrapper method
+     * @param player
+     * @param currentBiome is the biome the player is currently looking at
+     * @param menuOptions
+     */
+    public static void printBiomeView(Race player, Biome currentBiome, String[] menuOptions) {
         String[] biomeMenu;
         Kingdom currentKingdom = player.getKingdom(currentBiome);
         if (currentKingdom != null) {
@@ -46,9 +58,15 @@ public class PrintTerminal {
             biomeMenu = new String[]{"(M)ap"};
         }
             // then have the sameish general menu?
-        printScreen(currentBiome.toStringArray(), biomeMenu, 100);
+        printScreen(currentBiome.toStringArray(), biomeMenu);
     }
-    private static void printScreen(String[] board, String[] menu, int menuWidth) {
+
+    /**
+     * For printing to a terminal screen. Combines two different String[]s by printing them on the same line.
+     * @param board is the map or biome tiles
+     * @param menu is the player options on the current screen
+     */
+    private static void printScreen(String[] board, String[] menu) {
         // make String[] a multi-argument variable?
 
         // change so menu can be longer than board if needed

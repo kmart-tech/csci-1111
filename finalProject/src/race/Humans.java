@@ -7,8 +7,6 @@ import java.util.Map;
 import static race.Resource.*;
 
 // Has buildings, magic / technology, religion?, trading, exploring
-// resources: wood, stone, water?
-// money
 public class Humans extends Race {
     // default kingdom resources and population (no max population? maybe just logarithm it
     private static final Asset[] defaultResources = {
@@ -27,6 +25,10 @@ public class Humans extends Race {
 
     public HumanBuilding[] getBuildings() { return HumanBuilding.values(); }
 
+    /**
+     * Returns a string array containing the index and the corresponding HumanBuilding
+     * @return arrayIndex) BuildingTileName
+     */
     // should this be in Kingdom instead?
     public String[] buildOptions() {
         String[] optionsArray = new String[HumanBuilding.values().length];
@@ -48,29 +50,14 @@ public class Humans extends Race {
         kingdoms.add(new Kingdom(newBiome, defaultResources));
     }
 
+    /**
+     * (NOT IMPLEMENTED YET)
+     * Checks the conditions for race Humans to win.
+     * This would look for number of Kingdoms, total resources, and other conditions.
+     * @return
+     */
     @Override
     public boolean checkWin() {
         return false;
     }
-
-    //public String[] getActions() {return actions;}
-
-
-    /*
-    public boolean doAction(char input) {
-        switch(input) {
-            case 'B':
-
-        }
-    }
-    /*
-    humans do the following actions
-    Build -
-    - build a castle if they have the follow resources and conditions (settlement and so many farms)
-    Units -
-    - send unit to place
-    - do action with unit?
-    Explore or other action types?
-     */
-
 }

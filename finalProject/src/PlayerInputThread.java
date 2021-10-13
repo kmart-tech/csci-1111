@@ -1,5 +1,10 @@
 import java.util.Scanner;
 
+/**
+ * Used to create a thread just for the player's input.
+ * This way the game does not stop while waiting for input.
+ * Contains getString, getInt, and getChar for different menus and actions.
+ */
 public class PlayerInputThread extends Thread {
     private final Scanner input = new Scanner(System.in);
     private String output = "x";
@@ -13,7 +18,6 @@ public class PlayerInputThread extends Thread {
         this.running = false;
         input.close();
     }
-
 
     public String getString() {
         String temp = output;

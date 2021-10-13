@@ -16,6 +16,11 @@ public class Map {
         return map[row][column];
     }
 
+    /**
+     * Prints a string character defined by each biome as mapTile.
+     * Color not implemented but could follow the same pattern as biome.toStringArray();
+     * @return a String[] to use for printing methods
+     */
     public String[] toStringArray() {
         String[] biomeString = new String[map.length];
         for (int i = 0; i < map.length; i++) {
@@ -28,6 +33,9 @@ public class Map {
         return biomeString;
     }
 
+    /**
+     * Generates random biomes for the 2D map.
+     */
     // could use biome generation here
     private void generate() {
         for (int row = 0; row < map.length; row++) {

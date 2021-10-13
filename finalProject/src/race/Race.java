@@ -14,7 +14,7 @@ public abstract class Race {
     protected ArrayList<Kingdom> kingdoms = new ArrayList<Kingdom>();
     protected ArrayList<Biome> visibleBiomes = new ArrayList<Biome>(); // maybe should be a matrix the same size as map with boolean values
     // or maybe the Map class has the visible biomes for each player? (easier interactions?)
-    // should default resources be included?
+    // should default resources defined here?
 
 
     Race(String raceName, String playerName, BuildingTile[] raceBuildings, Kingdom startLocation) {
@@ -53,6 +53,9 @@ public abstract class Race {
         return playerBiomes;
     }
 
+    /**
+     * Updates the assets for each kingdom the player controls.
+     */
     public void update() {
         for (Kingdom kingdom: kingdoms) {
             kingdom.updateResources();
@@ -62,36 +65,4 @@ public abstract class Race {
     public abstract void addKingdom(Biome newBiome);
 
     public abstract boolean checkWin();
-
-    //public abstract boolean menu();
-
-        /* General MENU
-    See the Resources in a biome (displayed above the menu options)
-
-    All players do the following actions (implemented in Race class)
-    View map
-    - has a list of biomes they own (maybe names of them too)
-    - view a biome they have vision of (or had vision of)
-    */
-
-
-        /*
-    // map view or specific Kingdom view
-    protected String[] generalMenu(char input, Kingdom kingdom) {
-        String[] outputString = new String[];
-        switch(input) {
-            // no input from user
-            case "":
-                for (e: kingdom.getResources()) {
-
-
-        }
-
-        return outputString;
-    }
-    */
-
-
-
-    //public abstract Tile getBuildings()
 }

@@ -7,6 +7,12 @@ import java.util.Random;
 
 import static java.lang.Thread.sleep;
 
+/**
+ * Main java file for running the game. It currently handles too much and needs
+ * other methods or classes to generalize some actions such as:
+ * player input, player actions, menus, and building.
+ */
+
 enum Screen {
     KINGDOMVIEW,
     MAPVIEW;
@@ -50,7 +56,7 @@ public class Game {
 
         String[] generalOptions = {"", "(B)uild", "(M)ap"};
 
-        //start game loop (what order should things be done?)
+        // no win condition right now
         while (!player1.checkWin()) {
 
             // update game for each player, AI, biome
@@ -108,10 +114,10 @@ public class Game {
             // draw board and menu
             if (currentScreen == Screen.KINGDOMVIEW) {
                 if (currentMenu == Menu.GENERAL) {
-                    PrintTerminal.printKingdomView(player1, currentBiome, generalOptions);
+                    PrintTerminal.printBiomeView(player1, currentBiome, generalOptions);
                 }
                 else if(currentMenu == Menu.BUILD) {
-                    PrintTerminal.printKingdomView(player1, currentBiome, player1.buildOptions());
+                    PrintTerminal.printBiomeView(player1, currentBiome, player1.buildOptions());
                 }
             }
             else if (currentScreen == Screen.MAPVIEW) {
@@ -127,6 +133,8 @@ public class Game {
             System.out.print("\033[H\033[2J");
             System.out.flush(); // might not be needed
         }
+        // after win condition, close the input thread
+        inputThread.terminate();
     }
 }
 

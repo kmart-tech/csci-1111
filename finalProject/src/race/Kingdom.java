@@ -45,13 +45,19 @@ public class Kingdom {
 
     public void addToResource(Resource someResource, double amount) {
         // feels like there should be a better way to access the specific resource
-        for (int i =0; i < resources.size(); i++) {
-            if (resources.get(i).getResource() == someResource) {
-                resources.get(i).addToAmount(amount);
+        for (Asset resource : resources) {
+            if (resource.getResource() == someResource) {
+                resource.addToAmount(amount);
             }
         }
     }
 
+    /**
+     * Check for the necessary resources to pay for building. This is important to not be part of build()
+     * for the case of a settlement; settlement is paid in Kingdom 1 and built in Kingdom 2.
+     * @param building that the player is trying to build
+     * @return true if the building could be paid for
+     */
     public boolean payForBuilding(BuildingTile building) {
         // check for required resources and amount
         int[] resourcesToPay = new int[building.getResourceCost().size()];
@@ -93,6 +99,17 @@ public class Kingdom {
 
     public int[] getMapLocation(){ return occupiedBiome.getMapLocation(); }
 
+    /**
+     * Build() is used for general buildings (not settlements for example).
+     * We check that the location is valid: in the tiles array in biome and not on top of
+     * other buildings or ROCKs.
+     * Then we try to charge the Kingdom the cost
+     * Finally return true when successful (not currently used since there is not an error notification for the player)
+     * @param building
+     * @param row in biome
+     * @param col in biome
+     * @return true if we had no issue building it
+     */
     public boolean build(final BuildingTile building, final int row, final int col) {
         if (!occupiedBiome.validBuildingLocation(row, col)) {
             return false;
@@ -102,7 +119,6 @@ public class Kingdom {
         if (!payForBuilding(building)) {
             return false;
         }
-
 
         //TODO: apply the building's effect (increase food, population rate, etc...)
         occupiedBiome.replaceTile(building, row, col);

@@ -1,6 +1,6 @@
 package race;
 
-// assests a kingdom (or thing) possesses such as wood, population, gold...
+// assets a kingdom (or thing) possesses such as wood, population, gold...
 // and describes how that resource grows
 public class Asset {
     private final Resource resource;
