@@ -16,7 +16,7 @@ public class Humans extends Race {
             new Asset(FOOD, 100.0, 1.0),
             new Asset(WOOD, 100.0, 1.0),
             new Asset(STONE, 100.0, 1.0),
-            new Asset(GOLD, 60.0, 1.0)
+            new Asset(GOLD, 0.0, 1.0)
         };
 
     //public static final String[] actions = {"(B)uild"};
